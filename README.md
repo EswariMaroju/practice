@@ -15,22 +15,28 @@ FusedChatbotNew is a full-stack conversational AI application that integrates a 
 
 ## ✨ Features
 
-*   *Multi-LLM Support:* Choose from Gemini, Groq LLaMA 3, or Ollama-hosted models for chat interactions.
-*   *Retrieval Augmented Generation (RAG):* Upload documents (PDF, DOCX, PPTX, TXT) to augment chat responses with relevant context, including multi-query RAG for improved recall.
-*   *Document Analysis:*
-    *   *FAQ Generation:* Automatically extracts FAQs based on document content, scaling with document size.
-    *   *Topic Identification:* Identifies key topics with explanations, dynamically adjusted by document length.
-    *   *Mindmap Generation:* Creates hierarchical mindmaps using Mermaid for visualizing document structure.
-*   *Chain-of-Thought (CoT):* Displays the AI's reasoning process for transparency in responses.
-*   *User Management:* Supports user signup, signin, and session management.
-*   *File Management:* Upload, list, rename, and delete user-specific documents.
-*   *Chat History:* Save and retrieve chat sessions with RAG references and CoT.
-*   *Voice-to-Text Recognition:* Convert spoken input into text for hands-free interaction.
-*   *Chat Deletion:* Delete chat sessions for privacy and clutter management.
-*   *Enhanced UI:* Modern, intuitive interface for a seamless user experience.
-*   *Admin Pannel:* When a user wants to access the Admin API keys, they must first submit a request to the admin. The API keys will be accessible to the user only after the admin grants approval.
-*   *Podcast Generator:* Converts any document or topic into an engaging AI-generated podcast featuring two distinct voices in a conversational format. Users can interact with the podcast in real time by pausing and asking follow-up questions, creating a dynamic learning experience.
-*   *PPT Generation:* Automatically generates professional PowerPoint presentations from uploaded documents or selected topics. The AI structures content into slides with titles, bullet points, summaries, and speaker notes, ready for download and presentation.
+*   **Multi-LLM Support:** Choose from Gemini, Groq LLaMA 3, or Ollama-hosted models for chat interactions.
+*   **Retrieval Augmented Generation (RAG):** Upload documents (PDF, DOCX, PPTX, TXT) to augment chat responses with relevant context, including multi-query RAG for improved recall.
+*   **Document Analysis:**
+    *   **FAQ Generation:** Automatically extracts FAQs based on document content, scaling with document size.
+    *   **Topic Identification:** Identifies key topics with explanations, dynamically adjusted by document length.
+    *   **Mindmap Generation:** Creates hierarchical mindmaps using Mermaid for visualizing document structure.
+*   **Chain-of-Thought (CoT):** Displays the AI's reasoning process for transparency in responses.
+*   **User Management:** Supports user signup, signin, and session management.
+*   **File Management:** Upload, list, rename, and delete user-specific documents.
+*   **Chat History:** Save and retrieve chat sessions with RAG references and CoT.
+*   **Voice-to-Text Recognition:** Convert spoken input into text for hands-free interaction.
+*   **Chat Deletion:** Delete chat sessions for privacy and clutter management.
+*   **Enhanced UI:** Modern, intuitive interface for a seamless user experience.
+*   **Admin Pannel:** Users seeking access to Admin API keys can submit a request directly through the interface. Admins are automatically notified via email, and upon approval or rejection, users receive real-                        time status updates through email notifications.
+*   **Autonomus Agent:** Automatically plan, execute, and adapt tasks using goal-driven logic powered by open-source models like LLaMA-3 and Zephyr  and it was equipped with a dynamic toolbox like smart_search, web_search to find answers
+*   **Prompt Enhancer:** The system automatically rewrites user prompts to make them clearer and more focused, helps to  understand better and give more accurate answers.
+*   **Quiz Generator:** Upload a document, and the system automatically builds a quiz from the content.
+*   **Code Compiler:** Write and run code (Python, JS, etc.) directly in the chat with instant results.It also helps us to find errors and clearly explain with suggestions to improve or fix the code.
+*   **Flashcard Generation:** Converts documents into ready-to-use flashcards with terms,definitions and concepts.
+*   **Podcast Generator:** Converts any document or topic into an engaging AI-generated podcast featuring two distinct voices in a conversational format.Users can interact with the podcast in real time by pausing and asking follow-up questions, creating a dynamic learning experience.
+*   **Chat Enhancement:** Uses Redis caching to deliver faster responses by storing commonly used answers, chat context, and document previews.
+*   **PPT Generation:** Automatically generates professional PowerPoint presentations from uploaded documents or selected topics. The AI structures content into slides with titles, bullet points, summaries, and speaker notes, ready for download and presentation.
 
 
 ---
@@ -39,30 +45,82 @@ FusedChatbotNew is a full-stack conversational AI application that integrates a 
 
 This project uses a scalable *microservice-oriented architecture* to separate concerns and improve maintainability.
 
-[React Frontend] ↔ [Node.js Backend (Orchestrator)] ↔ [Python AI Service (AI Core)]
+```bash
+[React Frontend] 
+        ↕ REST/WebSocket
+[Node.js Backend (Orchestrator)] 
+        ↕ REST/WebSocket
+[Python AI Service (AI Core)]
+```
 
-*   *React Frontend:* A modern, dynamic user interface.
-*   *Node.js Backend:* Acts as an orchestrator and API gateway. It handles user authentication, session management, and file operations. It does *not* contain heavy AI logic.
-*   *Python AI Service:* A dedicated service for all specialized AI tasks, including RAG, vector database management (FAISS), and all communication with LLMs (Gemini, Groq, Ollama).
+### Core Services
+*   **React Frontend:** Modern, dynamic user interface with real-time updates and responsive design.
+*   **Node.js Backend (Orchestrator):** API gateway handling authentication, session management, file operations, and serving as the central hub for all client requests.
+*   **Python AI Service (AI Core):** Dedicated AI engine managing all intelligent operations including:
+    - RAG with FAISS vector database
+    - Multi-LLM orchestration (Gemini, Groq, Ollama)
+    - Document analysis and generation
+    - **Podcast Generation** with audio synthesis
+    - **PPT Generation** with slide creation
+    - Quiz, flashcard, and mindmap generation
+
+### Supporting Infrastructure
+*   **MongoDB:** Database for user data, chat history, and file metadata
+*   **Redis:** Caching layer for improved response times
+*   **Neo4j:** Knowledge graph storage for enhanced document relationships
+*   **File Storage:** Local filesystem for uploaded documents and generated content
+*   **Docker Services:** Containerized Redis and Neo4j instances for development
+
 
 ---
 
 ## 🛠 Tech Stack
 
-*   *Frontend:* React, Axios
-*   *Backend (Orchestrator):* Node.js, Express.js
-*   *AI Service:* Python, Flask
-*   *Database:* MongoDB with Mongoose
-*   *AI & ML:*
-    *   *LLMs:* Google Gemini, Groq, Ollama
-    *   *Vector Database:* FAISS (Facebook AI Similarity Search)
-    *   *Embeddings:* Sentence-Transformers
-*   *Authentication:* JWT (JSON Web Tokens), bcrypt.js
+### Frontend
+*   **Framework:** React 18 with Hooks
+*   **Styling:** Tailwind CSS
+*   **State Management:** React Context API
+*   **HTTP Client:** Axios
+*   **UI Components:** Custom components with CSS modules
+*   **Real-time:** WebSocket support for live updates
+
+### Backend (Orchestrator)
+*   **Runtime:** Node.js 22.x
+*   **Framework:** Express.js
+*   **Database:** MongoDB with Mongoose ODM
+*   **Authentication:** JWT, bcrypt.js
+*   **Session Management:** Express-session with Redis store
+*   **File Upload:** Multer for multipart uploads
+*   **Validation:** Express-validator
+
+### AI Service
+*   **Runtime:** Python 3.12
+*   **Framework:** Flask
+*   **ML/AI Libraries:** 
+    *   **LLMs:** Google Gemini, Groq, Ollama
+    *   **Vector Database:** FAISS (Facebook AI Similarity Search)
+    *   **Embeddings:** Sentence-Transformers
+    *   **Audio Processing:** PyDub, gTTS for podcast generation
+    *   **Document Processing:** PyPDF2, python-docx, python-pptx
+    *   **Graph Database:** Neo4j with py2neo
+    *   **Caching:** Redis with redis-py
+*   **Task Queue:** Celery for async processing
+*   **File Storage:** Local filesystem with UUID naming
+
+### Infrastructure & DevOps
+*   **Containerization:** Docker & Docker Compose
+*   **Process Management:** PM2 for Node.js services
+*   **Reverse Proxy:** Nginx (optional for production)
+*   **Environment Management:** dotenv for configuration
+*   **Development Tools:** Nodemon
+
 
 ---
 
 ## ✅ Prerequisites
 
+*   *FFmpeg:* [Link](https://www.gyan.dev/ffmpeg/builds/)
+        1.after download sucessful you need to add the bin directory to your system's envi path
 *   *Node.js:* v16 or higher with npm.
 *   *Python:* v3.9 or higher with pip.
 *   *Git:* For cloning the repository.
@@ -70,28 +128,32 @@ This project uses a scalable *microservice-oriented architecture* to separate co
 *   *(Optional) Ollama:* Installed and running for local LLM support.
 
 # Install Node.js (22.x) & npm
+```bash
 curl -fsSL https://deb.nodesource.com/setup_22.x | sudo bash
 sudo apt install -y nodejs
+```
 
 # Install Python 3.11 & pip
+```bash
 sudo apt update
 sudo apt install -y python3.11 python3.11-venv python3.11-dev python3-pip
+```
 
 # Install MongoDB
+```bash
 curl -fsSL https://pgp.mongodb.com/server-6.0.asc | gpg -o /usr/share/keyrings/mongodb-server-6.0.gpg --dearmor
 echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-6.0.gpg ] https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/6.0 multiverse" > /etc/apt/sources.list.d/mongodb-org-6.0.list
 sudo apt update
-
 sudo apt install -y mongodb-org
-
 systemctl start mongod
-
 systemctl enable mongod
-
+```
 
 # Install ffmpeg
+```bash
 sudo apt update
 sudo apt install ffmpeg
+```
 
 ---
 
