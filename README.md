@@ -29,14 +29,16 @@ FusedChatbotNew is a full-stack conversational AI application that integrates a 
 *   **Chat Deletion:** Delete chat sessions for privacy and clutter management.
 *   **Enhanced UI:** Modern, intuitive interface for a seamless user experience.
 *   **Admin Pannel:** Users seeking access to Admin API keys can submit a request directly through the interface. Admins are automatically notified via email, and upon approval or rejection, users receive real-                        time status updates through email notifications.
-*   **Autonomus Agent:** Automatically plan, execute, and adapt tasks using goal-driven logic powered by open-source models like LLaMA-3 and Zephyr  and it was equipped with a dynamic toolbox like smart_search, web_search to find answers
+*   **Agentic AI Features:**
+     *   **Subject-Oriented Agent:** AI that intelligently analyzes documents and provides optimized, context-aware responses
+     *   **Smart Quiz Generation:** Creates interactive quizzes directly from document content with adaptive difficulty
+     *   **Document Intelligence:** Transforms any uploaded document into personalized learning experiences
 *   **Prompt Enhancer:** The system automatically rewrites user prompts to make them clearer and more focused, helps to  understand better and give more accurate answers.
 *   **Quiz Generator:** Upload a document, and the system automatically builds a quiz from the content.
 *   **Code Compiler:** Write and run code (Python, JS, etc.) directly in the chat with instant results.It also helps us to find errors and clearly explain with suggestions to improve or fix the code.
-*   **Flashcard Generation:** Converts documents into ready-to-use flashcards with terms,definitions and concepts.
 *   **Podcast Generator:** Converts any document or topic into an engaging AI-generated podcast featuring two distinct voices in a conversational format.Users can interact with the podcast in real time by pausing and asking follow-up questions, creating a dynamic learning experience.
 *   **Chat Enhancement:** Uses Redis caching to deliver faster responses by storing commonly used answers, chat context, and document previews.
-*   **PPT Generation:** Automatically generates professional PowerPoint presentations from uploaded documents or selected topics. The AI structures content into slides with titles, bullet points, summaries, and speaker notes, ready for download and presentation.
+*   **Presentation Builder:** Automatically generates professional PowerPoint presentations from uploaded documents or selected topics. The AI structures content into slides with titles, bullet points, summaries, and speaker notes, ready for download and presentation.
 
 
 ---
@@ -61,12 +63,12 @@ This project uses a scalable *microservice-oriented architecture* to separate co
     - Multi-LLM orchestration (Gemini, Groq, Ollama)
     - Document analysis and generation
     - **Podcast Generation** with audio synthesis
-    - **PPT Generation** with slide creation
-    - Quiz, flashcard, and mindmap generation
+    - **Presentation Builder** with slide creation
+    - Quiz and mindmap generation
 
 ### Supporting Infrastructure
 *   **MongoDB:** Database for user data, chat history, and file metadata
-*   **Redis:** Caching layer for improved response times
+*   **Redis:** Caching layer for improved response times           load balancing
 *   **Neo4j:** Knowledge graph storage for enhanced document relationships
 *   **File Storage:** Local filesystem for uploaded documents and generated content
 *   **Docker Services:** Containerized Redis and Neo4j instances for development
