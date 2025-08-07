@@ -81,9 +81,17 @@ sudo apt install -y python3.11 python3.11-venv python3.11-dev python3-pip
 curl -fsSL https://pgp.mongodb.com/server-6.0.asc | gpg -o /usr/share/keyrings/mongodb-server-6.0.gpg --dearmor
 echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-6.0.gpg ] https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/6.0 multiverse" > /etc/apt/sources.list.d/mongodb-org-6.0.list
 sudo apt update
+
 sudo apt install -y mongodb-org
+
 systemctl start mongod
+
 systemctl enable mongod
+
+
+# Install ffmpeg
+sudo apt update
+sudo apt install ffmpeg
 
 ---
 
@@ -167,7 +175,14 @@ npm install
 ---
 ## Running the Application
 ###Run the three services in separate terminal windows
-
+## Running the Neo4j services
+```bash
+docker run --name neo4j-db -p 7474:7474 -p 7687:7687 -d -e NEO4J_AUTH=neo4j/test neo4j:latest
+```
+## Running Redis services
+```bash
+docker run --name redis-server -p 6379:6379 -d redis:latest
+```
 ### Terminal 1: Start the AI Core Service (Python)
 ```bash
 cd server
